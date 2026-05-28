@@ -177,6 +177,45 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40
 .ceo-card-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--text-d); margin-bottom: 4px; }
 .ceo-card-text span { font-size: 12px; color: var(--text-dm); line-height: 1.6; font-weight: 300; }
 
+/* MÉTODO */
+#metodo { max-width: 1200px; margin: 0 auto; padding: 120px 24px; }
+.metodo-header { margin-bottom: 64px; }
+.nivel-selector { display: flex; gap: 2px; background: var(--border-d); padding: 2px; width: fit-content; margin-bottom: 64px; }
+.nivel-btn { padding: 12px 28px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; border: none; color: var(--text-dm); cursor: none; transition: all .3s; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+.nivel-btn.active { background: var(--steel); color: #fff; }
+.nivel-btn:hover:not(.active) { color: var(--text-d); }
+.metodo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.metodo-wheel-wrap svg { width: 100%; height: auto; display: block; }
+.metodo-detail { min-height: 360px; display: flex; flex-direction: column; justify-content: center; }
+.detail-empty { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 360px; }
+.detail-empty-hint { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dm); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.detail-empty-hint::before { content: ''; width: 32px; height: 1px; background: var(--text-dm); }
+.detail-empty h3 { font-family: 'Fraunces', serif; font-size: clamp(22px,3vw,32px); font-weight: 700; line-height: 1.2; color: var(--text-dm); opacity: 0.4; }
+.detail-panel { animation: fadeUp 0.4s ease forwards; }
+.detail-step-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--steel-light); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.detail-step-label::before { content: ''; width: 24px; height: 1px; background: var(--steel-light); }
+.detail-name { font-family: 'Fraunces', serif; font-size: clamp(26px,3vw,40px); font-weight: 700; line-height: 1.1; margin-bottom: 6px; }
+.detail-sub { font-size: 12px; color: var(--steel-light); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.detail-desc { font-size: 15px; color: var(--text-dm); line-height: 1.8; font-weight: 300; margin-bottom: 24px; border-left: 2px solid var(--steel-dark); padding-left: 20px; }
+.detail-items { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.detail-items li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-dm); line-height: 1.5; font-weight: 300; }
+.detail-items li::before { content: '→'; color: var(--steel-light); flex-shrink: 0; font-family: 'Fraunces', serif; }
+.detail-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.detail-badge.is-active { background: rgba(79,168,216,0.12); border: 1px solid rgba(79,168,216,0.35); color: var(--steel-light); }
+.detail-badge.is-latent { background: rgba(110,143,168,0.08); border: 1px solid rgba(110,143,168,0.2); color: var(--text-dm); }
+.detail-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.detail-badge.is-active::before { background: var(--steel-light); }
+.detail-badge.is-latent::before { background: var(--text-dm); opacity: 0.5; }
+.metodo-legend { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; background: var(--border-d); margin-top: 40px; }
+.legend-item { background: var(--bg-d2); padding: 16px 12px; text-align: center; cursor: none; transition: background .3s; }
+.legend-item:hover { background: var(--bg-d3); }
+.legend-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900; line-height: 1; margin-bottom: 4px; transition: color .5s; }
+.legend-name { font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.4; transition: color .5s; }
+.legend-item.leg-active .legend-num { color: var(--steel-light); }
+.legend-item.leg-active .legend-name { color: var(--text-dm); }
+.legend-item.leg-latent .legend-num { color: rgba(46,128,184,0.25); }
+.legend-item.leg-latent .legend-name { color: rgba(110,143,168,0.3); }
+
 /* METODOLOGIA */
 #metodologia { max-width: 1200px; margin: 0 auto; padding: 120px 24px; }
 .levels-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
@@ -329,6 +368,8 @@ footer { border-top: 1px solid var(--border-d); padding: 32px 24px; max-width: 1
   .processo-grid { grid-template-columns: 1fr 1fr; }
   .ceo-block { grid-template-columns: 1fr; gap: 40px; padding: 40px 28px; }
   .levels-grid, .pricing-grid, .funil { grid-template-columns: 1fr; }
+  .metodo-layout { grid-template-columns: 1fr; }
+  .nivel-selector { width: 100%; }
   .pilares-grid { grid-template-columns: 1fr 1fr; }
   .diag-mosaic { grid-template-columns: 1fr 1fr; }
   .diag-narrative { grid-template-columns: 1fr; gap: 40px; padding: 40px 28px; }
@@ -645,6 +686,37 @@ footer { border-top: 1px solid var(--border-d); padding: 32px 24px; max-width: 1
       <p class="level-desc">Operação completa: conteúdo, conversão e retenção. Automações de relacionamento, fidelização e recuperação de clientes — a Solution cresce com previsibilidade em todas as frentes.</p>
     </div>
   </div>
+</div>
+</div>
+
+<!-- ── MÉTODO PALETA MKT™ · dark ── -->
+<div class="s-dark">
+<div id="metodo">
+  <div class="metodo-header">
+    <div class="section-label reveal">Método Paleta Mkt™</div>
+    <h2 class="section-title reveal reveal-delay-1">Sistema de<br>Crescimento Estruturado.</h2>
+    <p class="section-desc reveal reveal-delay-2">Enquanto diretorias de marketing apontam o caminho, a Paleta caminha junto. Selecione o nível e veja quais etapas do método são ativadas no projeto da Solution Vidros.</p>
+  </div>
+
+  <div class="nivel-selector reveal reveal-delay-2">
+    <button class="nivel-btn active" onclick="setNivel(1,this)">Nível 1 · Atração</button>
+    <button class="nivel-btn" onclick="setNivel(2,this)">Nível 2 · Conversão</button>
+    <button class="nivel-btn" onclick="setNivel(3,this)">Nível 3 · Full Growth</button>
+  </div>
+
+  <div class="metodo-layout reveal">
+    <div class="metodo-wheel-wrap">
+      <svg id="metodoWheel" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <div class="metodo-detail" id="metodoDetail">
+      <div class="detail-empty">
+        <div class="detail-empty-hint">Clique em uma etapa</div>
+        <h3>Explore cada etapa<br>do método.</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="metodo-legend" id="metodoLegend"></div>
 </div>
 </div>
 
@@ -973,6 +1045,147 @@ const stickyBar = document.getElementById('stickyBar');
 window.addEventListener('scroll', () => {
   stickyBar.classList.toggle('visible', window.scrollY > 600);
 });
+
+/* ── MÉTODO PALETA WHEEL ── */
+const metodoSteps = [
+  { id:1, name:'Diagnóstico Estratégico', sub:'Análise do Cenário', desc:'Entender onde você está para definir para onde ir. Mapeamos a realidade completa da Solution antes de executar qualquer ação.', items:['Análise de posicionamento e concorrência','Mapeamento de gargalos e oportunidades','Avaliação de canais e presença digital','Definição de metas realistas e mensuráveis'] },
+  { id:2, name:'Cultura & Processo', sub:'Alinhamento de Equipe', desc:'Alinhar a equipe antes de escalar. Crescimento sem processo interno estruturado vira caos operacional.', items:['Treinamento de atendimento e cultura de vendas','Padronização de processos operacionais','Alinhamento de comunicação interna','Manual de boas práticas'] },
+  { id:3, name:'Estrutura Comercial', sub:'Organização de Vendas', desc:'Organizar a máquina de vendas. Funil definido, CRM implementado, scripts criados — previsibilidade antes do volume.', items:['Definição de funil de vendas e etapas','Estruturação de precificação estratégica','Implementação de CRM e automações','Scripts e roteiros de vendas'] },
+  { id:4, name:'Atração Estratégica', sub:'Geração de Demanda', desc:'Gerar demanda qualificada com consistência. Conteúdo de processo + tráfego pago trabalhando juntos para filtrar leads.', items:['Produção de conteúdo in loco com propósito','Estratégia de tráfego pago e orgânico','Campanhas segmentadas por público','Presença digital otimizada (Instagram, Google)'] },
+  { id:5, name:'Conversão & Nutrição', sub:'Leads em Clientes', desc:'Transformar interesse em venda. Nutrição estratégica via WhatsApp e automação de follow-up estruturado.', items:['Estratégias de nutrição de leads','Ofertas e gatilhos de conversão','Automação de follow-up e remarketing','Otimização da jornada de compra'] },
+  { id:6, name:'Retenção & Recompra', sub:'Fidelização e Relacionamento', desc:'Fidelizar para crescer com menor custo. Cliente que volta e indica vale muito mais do que novo lead.', items:['Programa de fidelidade e recompensas','CRM ativo com comunicação personalizada','Estratégias de recompra e upsell','Pesquisa de satisfação e NPS'] },
+  { id:7, name:'Performance & Indicadores', sub:'Otimização Contínua', desc:'O que não se mede, não se melhora. Dashboard, relatórios mensais e decisões baseadas em dados reais.', items:['Dashboard com KPIs em tempo real','Acompanhamento de CAC, ROI, LTV e ticket médio','Relatórios mensais com análise de resultados','Otimização contínua baseada em dados'] }
+];
+const activeByNivel = { 1:[1,4,7], 2:[1,2,3,4,5,7], 3:[1,2,3,4,5,6,7] };
+let currentNivel = 1;
+let currentStep = null;
+const NS = 'http://www.w3.org/2000/svg';
+
+function mkEl(tag, attrs) {
+  const el = document.createElementNS(NS, tag);
+  Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k,v));
+  return el;
+}
+
+function drawWheel() {
+  const svg = document.getElementById('metodoWheel');
+  svg.innerHTML = '';
+  const active = activeByNivel[currentNivel];
+  const cx=300, cy=300, R=218, r=118, lblR=262, n=7, gap=2.8;
+  const seg = 360/n, off=-90;
+
+  // defs
+  const defs = mkEl('defs',{});
+  const fGlow = mkEl('filter',{id:'glow',x:'-30%',y:'-30%',width:'160%',height:'160%'});
+  const blur = mkEl('feGaussianBlur',{stdDeviation:'5',result:'b'});
+  const merge = mkEl('feMerge',{});
+  ['b','SourceGraphic'].forEach(i=>{ const n=mkEl('feMergeNode',{}); n.setAttribute('in',i); merge.appendChild(n); });
+  fGlow.appendChild(blur); fGlow.appendChild(merge); defs.appendChild(fGlow);
+  svg.appendChild(defs);
+
+  // outer ring glow
+  svg.appendChild(mkEl('circle',{cx,cy,r:R+6,fill:'none',stroke:'rgba(46,128,184,0.06)',strokeWidth:'12'}));
+
+  metodoSteps.forEach((step,i) => {
+    const isActive = active.includes(step.id);
+    const isSelected = currentStep === step.id;
+    const a1 = (off + i*seg + gap/2) * Math.PI/180;
+    const a2 = (off + (i+1)*seg - gap/2) * Math.PI/180;
+    const mid = (a1+a2)/2;
+
+    const x1=cx+R*Math.cos(a1), y1=cy+R*Math.sin(a1);
+    const x2=cx+R*Math.cos(a2), y2=cy+R*Math.sin(a2);
+    const x3=cx+r*Math.cos(a2), y3=cy+r*Math.sin(a2);
+    const x4=cx+r*Math.cos(a1), y4=cy+r*Math.sin(a1);
+    const d = `M${x1} ${y1} A${R} ${R} 0 0 1 ${x2} ${y2} L${x3} ${y3} A${r} ${r} 0 0 0 ${x4} ${y4}Z`;
+
+    const g = document.createElementNS(NS,'g');
+    g.style.cursor='pointer';
+
+    const fill = isSelected ? '#4FA8D8' : isActive ? '#2E80B8' : '#0b1a28';
+    const opacity = isActive ? '1' : '0.45';
+    const pathEl = mkEl('path',{d,fill,opacity});
+    if(isActive) pathEl.setAttribute('filter','url(#glow)');
+    pathEl.style.transition='fill 0.5s,opacity 0.5s';
+    g.appendChild(pathEl);
+
+    // inner number
+    const nx=cx+(r+50)*Math.cos(mid), ny=cy+(r+50)*Math.sin(mid);
+    const num = mkEl('text',{x:nx,y:ny+7,'text-anchor':'middle','font-family':'Fraunces,serif','font-size':'16','font-weight':'900',fill:isActive?'#fff':'rgba(79,168,216,0.3)',opacity:isActive?'1':'1'});
+    num.textContent=`0${step.id}`;
+    g.appendChild(num);
+
+    // outer label
+    const lx=cx+lblR*Math.cos(mid), ly=cy+lblR*Math.sin(mid);
+    const words=step.name.split(' ');
+    const l1=words.slice(0,2).join(' '), l2=words.slice(2).join(' ');
+    const lbl=mkEl('text',{x:lx,y:ly+(l2?-6:4),'text-anchor':'middle','font-family':'DM Sans,sans-serif','font-size':'9','font-weight':'500',fill:isActive?'#dce8f2':'rgba(46,128,184,0.3)',opacity:'1'});
+    lbl.style.transition='fill 0.5s';
+    const t1=mkEl('tspan',{x:lx,dy:'0'}); t1.textContent=l1; lbl.appendChild(t1);
+    if(l2){ const t2=mkEl('tspan',{x:lx,dy:'13'}); t2.textContent=l2; lbl.appendChild(t2); }
+    svg.appendChild(lbl);
+
+    g.addEventListener('click',()=>selectStep(step.id));
+    g.addEventListener('mouseenter',()=>{ pathEl.setAttribute('fill', isActive?'#5BBEEC':'#132030'); });
+    g.addEventListener('mouseleave',()=>{ pathEl.setAttribute('fill', currentStep===step.id?'#4FA8D8': isActive?'#2E80B8':'#0b1a28'); });
+    svg.appendChild(g);
+  });
+
+  // center
+  svg.appendChild(mkEl('circle',{cx,cy,r:r-6,fill:'#060a10',stroke:'rgba(46,128,184,0.18)',strokeWidth:'1'}));
+  const ct1=mkEl('text',{x:cx,y:cy-14,'text-anchor':'middle','font-family':'Fraunces,serif','font-size':'12','font-weight':'300',fill:'#6e8fa8'}); ct1.textContent='método'; svg.appendChild(ct1);
+  const ct2=mkEl('text',{x:cx,y:cy+8,'text-anchor':'middle','font-family':'Fraunces,serif','font-size':'20','font-weight':'700',fill:'#4FA8D8'}); ct2.textContent='paleta'; svg.appendChild(ct2);
+  const ct3=mkEl('text',{x:cx,y:cy+28,'text-anchor':'middle','font-family':'Fraunces,serif','font-size':'14','font-weight':'400',fill:'rgba(220,232,242,0.6)'}); ct3.textContent='mkt™'; svg.appendChild(ct3);
+}
+
+function drawLegend() {
+  const active = activeByNivel[currentNivel];
+  const lg = document.getElementById('metodoLegend');
+  lg.innerHTML = '';
+  metodoSteps.forEach(step => {
+    const isActive = active.includes(step.id);
+    const item = document.createElement('div');
+    item.className = `legend-item ${isActive?'leg-active':'leg-latent'}`;
+    item.innerHTML = `<div class="legend-num">0${step.id}</div><div class="legend-name">${step.name.split(' ').slice(0,2).join(' ')}</div>`;
+    item.style.cursor = 'pointer';
+    item.addEventListener('click',()=>selectStep(step.id));
+    lg.appendChild(item);
+  });
+}
+
+function setNivel(n, btn) {
+  currentNivel = n;
+  currentStep = null;
+  document.querySelectorAll('.nivel-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  drawWheel();
+  drawLegend();
+  document.getElementById('metodoDetail').innerHTML = `<div class="detail-empty"><div class="detail-empty-hint">Clique em uma etapa</div><h3>Explore cada etapa<br>do método.</h3></div>`;
+}
+
+function selectStep(id) {
+  currentStep = id;
+  const step = metodoSteps.find(s=>s.id===id);
+  const active = activeByNivel[currentNivel];
+  const isActive = active.includes(id);
+  drawWheel();
+  const badge = isActive
+    ? `<div class="detail-badge is-active">Ativo no Nível ${currentNivel}</div>`
+    : `<div class="detail-badge is-latent">Disponível em nível superior</div>`;
+  document.getElementById('metodoDetail').innerHTML = `
+    <div class="detail-panel">
+      <div class="detail-step-label">Etapa 0${step.id} de 07</div>
+      <div class="detail-name">${step.name}</div>
+      <div class="detail-sub">${step.sub}</div>
+      <p class="detail-desc">${step.desc}</p>
+      <ul class="detail-items">${step.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+      ${badge}
+    </div>`;
+}
+
+// Init
+drawWheel();
+drawLegend();
 </script>
 </body>
 </html>
