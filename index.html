@@ -1,1 +1,856 @@
-aa
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial | Solution Vidros × Paleta Mkt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --steel: #2E80B8;
+  --steel-light: #4FA8D8;
+  --steel-dark: #1A5C8A;
+  --silver: #7A9EBA;
+  --bg-d: #060a10;
+  --bg-d2: #0b1520;
+  --bg-d3: #101e2d;
+  --text-d: #dce8f2;
+  --text-dm: #6e8fa8;
+  --border-d: rgba(46,128,184,0.2);
+  --bg-l: #f0f6fb;
+  --bg-l2: #ffffff;
+  --bg-l3: #e4eef6;
+  --text-l: #0b1520;
+  --text-lm: #5a7080;
+  --border-l: rgba(46,128,184,0.15);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg-d); color: var(--text-d); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
+
+.cursor { width: 12px; height: 12px; background: var(--steel-light); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+.cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(79,168,216,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: left .18s ease-out, top .18s ease-out; }
+
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.02; pointer-events: none; z-index: 1000; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes lineDown { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.7); } }
+@keyframes scrollAnim { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(6,10,16,0.96), transparent); backdrop-filter: blur(8px); }
+.nav-logo { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-d); }
+.nav-logo span { color: var(--steel-light); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dm); text-decoration: none; cursor: none; transition: color .3s; }
+.nav-links a:hover { color: var(--steel-light); }
+.nav-cta { background: var(--steel); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 10px 20px; border-radius: 4px; cursor: none; transition: background .3s, transform .2s; }
+.nav-cta:hover { background: var(--steel-light); transform: translateY(-1px); }
+
+#hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; text-align: center; padding: 60px 24px; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(46,128,184,0.12) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 80% 30%, rgba(26,92,138,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 50% 90%, rgba(79,168,216,0.04) 0%, transparent 60%); }
+.hero-line { position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(79,168,216,0.15) 40%, transparent); animation: lineDown 2s ease forwards; transform-origin: top; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(79,168,216,0.08); border: 1px solid rgba(79,168,216,0.25); border-radius: 100px; padding: 6px 18px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel-light); margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--steel-light); border-radius: 50%; animation: pulse 2s infinite; }
+.hero-number { font-family: 'Fraunces', serif; font-size: clamp(11px,1.5vw,14px); font-weight: 300; letter-spacing: 0.3em; color: var(--text-dm); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.5s ease forwards; }
+.hero-title { font-family: 'Fraunces', serif; font-size: clamp(52px,10vw,120px); font-weight: 900; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 32px; opacity: 0; animation: fadeUp 1s 0.7s ease forwards; }
+.hero-title .a-steel { color: var(--steel-light); }
+.hero-title .a-silver { color: var(--silver); }
+.hero-sub { font-size: clamp(14px,2vw,18px); color: var(--text-dm); font-weight: 300; max-width: 520px; line-height: 1.7; margin-bottom: 60px; opacity: 0; animation: fadeUp 0.8s 1s ease forwards; }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s 1.2s ease forwards; }
+.btn-primary { background: var(--steel); color: #fff; border: none; padding: 16px 36px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; cursor: none; transition: background .3s, transform .2s; display: inline-block; }
+.btn-primary:hover { background: var(--steel-light); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--text-d); border: 1px solid rgba(220,232,242,0.2); padding: 16px 36px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; cursor: none; transition: border-color .3s, color .3s, transform .2s; display: inline-block; }
+.btn-ghost:hover { border-color: var(--steel-light); color: var(--steel-light); transform: translateY(-2px); }
+.hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 0.8s 1.8s ease forwards; }
+.hero-scroll span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dm); }
+.scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--steel-light), transparent); animation: scrollAnim 1.5s infinite; }
+
+.divider { width: 100%; height: 1px; background: var(--border-d); }
+
+.section-label { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--steel-light); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-label::before { content: ''; width: 32px; height: 1px; background: var(--steel-light); }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(32px,5vw,60px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+.section-desc { font-size: 16px; color: var(--text-dm); max-width: 600px; line-height: 1.8; font-weight: 300; }
+
+.s-dark { background: var(--bg-d); color: var(--text-d); }
+.s-mid { background: var(--bg-d2); color: var(--text-d); }
+.s-light { background: var(--bg-l); color: var(--text-l); }
+.s-light .section-label { color: var(--steel-dark); }
+.s-light .section-label::before { background: var(--steel-dark); }
+.s-light .section-title { color: var(--text-l); }
+.s-light .section-desc { color: var(--text-lm); }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+
+/* DIAGNÓSTICO */
+#diagnostico { max-width: 1200px; margin: 0 auto; padding: 120px 24px; }
+.diag-header { margin-bottom: 72px; }
+.diag-mosaic { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: var(--border-d); margin-bottom: 2px; }
+.diag-block { background: var(--bg-d2); padding: 40px 36px; position: relative; overflow: hidden; transition: background .3s; cursor: none; }
+.diag-block:hover { background: var(--bg-d3); }
+.diag-block::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+.diag-block:hover::after { transform: scaleX(1); }
+.diag-accent-1::after { background: var(--steel-light); }
+.diag-accent-2::after { background: var(--steel); }
+.diag-accent-3::after { background: var(--silver); }
+.diag-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+.diag-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+.diag-accent-1 .diag-label { color: var(--steel-light); }
+.diag-accent-2 .diag-label { color: var(--steel); }
+.diag-accent-3 .diag-label { color: var(--silver); }
+.diag-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+.diag-desc { font-size: 13px; color: var(--text-dm); line-height: 1.8; font-weight: 300; }
+.diag-desc strong { color: var(--text-d); font-weight: 500; }
+.diag-narrative { background: var(--bg-d2); padding: 56px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.diag-narrative-text h3 { font-family: 'Fraunces', serif; font-size: clamp(22px,3vw,30px); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+.diag-narrative-text p { font-size: 15px; color: var(--text-dm); line-height: 1.8; font-weight: 300; }
+.diag-narrative-text p + p { margin-top: 16px; }
+.diag-stats { display: flex; flex-direction: column; gap: 2px; }
+.diag-stat { padding: 24px 28px; background: var(--bg-d3); border-left: 3px solid var(--steel); }
+.diag-stat .big { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 900; color: var(--steel-light); line-height: 1; }
+.diag-stat .small { font-size: 12px; color: var(--text-dm); letter-spacing: 0.05em; margin-top: 6px; line-height: 1.6; }
+
+/* MID CTA */
+.mid-cta { background: var(--bg-d2); border-top: 1px solid var(--border-d); border-bottom: 1px solid var(--border-d); }
+.mid-cta-inner { max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.mid-cta-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--steel-light); display: block; margin-bottom: 12px; }
+.mid-cta-title { font-family: 'Fraunces', serif; font-size: clamp(22px,3vw,36px); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+.mid-cta-actions { display: flex; gap: 16px; flex-shrink: 0; flex-wrap: wrap; }
+
+/* ESTRATÉGIA */
+#estrategia { padding: 120px 24px; }
+.estrategia-inner { max-width: 1200px; margin: 0 auto; }
+.estrategia-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
+.funil { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border-l); }
+.funil-stage { background: var(--bg-l2); padding: 48px 36px; position: relative; overflow: hidden; cursor: none; transition: background .4s; }
+.funil-stage:hover { background: var(--bg-l3); }
+.funil-stage::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; }
+.fs-1::before { background: var(--steel-light); }
+.fs-2::before { background: var(--steel); }
+.fs-3::before { background: var(--steel-dark); }
+.funil-icon { font-size: 32px; margin-bottom: 24px; display: block; }
+.funil-stage-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+.fs-1 .funil-stage-label { color: var(--steel-light); }
+.fs-2 .funil-stage-label { color: var(--steel); }
+.fs-3 .funil-stage-label { color: var(--steel-dark); }
+.funil-name { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; margin-bottom: 16px; color: var(--text-l); }
+.funil-desc { font-size: 14px; color: var(--text-lm); line-height: 1.8; font-weight: 300; margin-bottom: 24px; }
+.funil-formats { display: flex; flex-wrap: wrap; gap: 8px; }
+.funil-tag { font-size: 11px; padding: 4px 12px; border-radius: 100px; font-weight: 500; letter-spacing: 0.05em; }
+.fs-1 .funil-tag { background: rgba(79,168,216,0.1); color: var(--steel); border: 1px solid rgba(79,168,216,0.25); }
+.fs-2 .funil-tag { background: rgba(46,128,184,0.1); color: var(--steel-dark); border: 1px solid rgba(46,128,184,0.25); }
+.fs-3 .funil-tag { background: rgba(26,92,138,0.1); color: var(--steel-dark); border: 1px solid rgba(26,92,138,0.3); }
+
+/* METODOLOGIA */
+#metodologia { max-width: 1200px; margin: 0 auto; padding: 120px 24px; }
+.levels-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
+.levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border-d); }
+.level-card { background: var(--bg-d2); padding: 48px 36px; position: relative; overflow: hidden; cursor: none; transition: background .4s; }
+.level-card:hover { background: var(--bg-d3); }
+.level-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; opacity: 0.6; transition: opacity .3s; }
+.level-card:hover::before { opacity: 1; }
+.level-card.l1::before { background: var(--steel-light); }
+.level-card.l2::before { background: var(--steel); }
+.level-card.l3::before { background: var(--silver); }
+.level-number { font-family: 'Fraunces', serif; font-size: 80px; font-weight: 900; line-height: 1; opacity: 0.05; position: absolute; top: 20px; right: 24px; pointer-events: none; }
+.level-tag { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 12px; font-weight: 500; }
+.l1 .level-tag { color: var(--steel-light); }
+.l2 .level-tag { color: var(--steel); }
+.l3 .level-tag { color: var(--silver); }
+.level-name { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+.level-price { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 400; color: var(--text-dm); margin-bottom: 16px; }
+.level-desc { font-size: 14px; color: var(--text-dm); line-height: 1.8; font-weight: 300; }
+
+/* ENTREGAVEIS */
+#entregaveis { padding: 120px 24px; }
+.entregaveis-inner { max-width: 1200px; margin: 0 auto; }
+.tabs { display: flex; gap: 2px; margin-bottom: 48px; background: var(--border-l); padding: 2px; width: fit-content; }
+.tab { padding: 12px 28px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; border: none; color: var(--text-lm); cursor: none; transition: all .3s; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+.tab.active { background: var(--bg-l2); color: var(--text-l); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.tab:hover:not(.active) { color: var(--text-l); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.deliverables-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; background: var(--border-l); }
+.deliverable-item { background: var(--bg-l2); padding: 28px 32px; display: flex; align-items: flex-start; gap: 16px; transition: background .3s; cursor: none; }
+.deliverable-item:hover { background: var(--bg-l3); }
+.del-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+.l1-icon { background: rgba(79,168,216,0.1); border: 1px solid rgba(79,168,216,0.3); }
+.l2-icon { background: rgba(46,128,184,0.1); border: 1px solid rgba(46,128,184,0.3); }
+.l3-icon { background: rgba(122,158,186,0.1); border: 1px solid rgba(122,158,186,0.3); }
+.del-text { font-size: 14px; color: var(--text-l); font-weight: 400; line-height: 1.5; }
+.del-bonus { color: var(--steel-dark); font-weight: 600; }
+
+/* PILARES */
+#pilares { max-width: 1200px; margin: 0 auto; padding: 120px 24px; }
+.pilares-header { margin-bottom: 72px; }
+.pilares-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border-d); }
+.pilar-card { background: var(--bg-d2); padding: 48px 32px; position: relative; overflow: hidden; cursor: none; transition: background .4s; }
+.pilar-card:hover { background: var(--bg-d3); }
+.pilar-arrow { position: absolute; top: 28px; right: 28px; font-size: 20px; color: var(--steel-light); opacity: 0; transition: opacity .3s, transform .3s; transform: translateX(-8px); }
+.pilar-card:hover .pilar-arrow { opacity: 1; transform: translateX(0); }
+.pilar-num { font-family: 'Fraunces', serif; font-size: 64px; font-weight: 900; line-height: 1; color: rgba(79,168,216,0.05); margin-bottom: 24px; }
+.pilar-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+.pilar-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+.pilar-desc { font-size: 13px; color: var(--text-dm); line-height: 1.8; font-weight: 300; }
+
+/* ETAPAS */
+#etapas { padding: 120px 24px; }
+.etapas-inner { max-width: 1200px; margin: 0 auto; }
+.etapas-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
+.timeline { position: relative; display: flex; flex-direction: column; }
+.timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--steel), transparent); opacity: 0.3; }
+.timeline-item { display: flex; gap: 40px; padding: 40px 0 40px 60px; border-bottom: 1px solid var(--border-l); position: relative; }
+.timeline-dot { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border-radius: 50%; background: var(--bg-l); border: 2px solid var(--steel); transition: background .3s, box-shadow .3s; z-index: 2; }
+.timeline-item:hover .timeline-dot { background: var(--steel); box-shadow: 0 0 20px rgba(46,128,184,0.4); }
+.timeline-step { font-size: 10px; letter-spacing: 0.2em; color: var(--steel); text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+.timeline-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 10px; color: var(--text-l); }
+.timeline-desc { font-size: 13px; color: var(--text-lm); line-height: 1.8; font-weight: 300; max-width: 600px; }
+.timeline-prazo { margin-left: auto; text-align: right; flex-shrink: 0; }
+.prazo-num { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 900; color: var(--steel); line-height: 1; }
+.prazo-label { font-size: 10px; letter-spacing: 0.15em; color: var(--text-lm); text-transform: uppercase; }
+
+/* INVESTIMENTO */
+#investimento { max-width: 1200px; margin: 0 auto; padding: 120px 24px; }
+.inv-header { text-align: center; margin-bottom: 80px; }
+.inv-header .section-label { justify-content: center; }
+.inv-header .section-label::before { display: none; }
+.reveal-gate { text-align: center; margin-bottom: 60px; }
+.reveal-gate p { font-size: 14px; color: var(--text-dm); margin-bottom: 24px; line-height: 1.6; }
+.btn-reveal { background: transparent; border: 1px solid var(--steel); color: var(--steel-light); padding: 18px 48px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: none; border-radius: 4px; transition: background .3s, color .3s; display: inline-flex; align-items: center; gap: 12px; }
+.btn-reveal:hover { background: var(--steel); color: #fff; }
+.lock-icon { font-size: 16px; transition: transform .3s; }
+.btn-reveal.unlocked .lock-icon { transform: rotate(-20deg); }
+.pricing-wrapper { max-height: 0; overflow: hidden; transition: max-height 1.2s cubic-bezier(0.16,1,0.3,1), opacity 0.8s ease; opacity: 0; }
+.pricing-wrapper.visible { max-height: 2000px; opacity: 1; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border-d); }
+.pricing-card { background: var(--bg-d2); padding: 56px 40px; position: relative; overflow: hidden; cursor: none; transition: background .4s; }
+.pricing-card:hover { background: var(--bg-d3); }
+.pricing-card.featured { background: var(--bg-d3); }
+.pricing-card.featured::after { content: 'RECOMENDADO'; position: absolute; top: 20px; right: -28px; background: var(--steel); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; padding: 6px 40px; transform: rotate(45deg); }
+.pricing-tier { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; margin-bottom: 12px; }
+.p1 .pricing-tier { color: var(--steel-light); }
+.p2 .pricing-tier { color: var(--steel); }
+.p3 .pricing-tier { color: var(--silver); }
+.pricing-name { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 700; margin-bottom: 8px; line-height: 1.1; }
+.pricing-objective { font-size: 13px; color: var(--text-dm); margin-bottom: 40px; line-height: 1.6; font-weight: 300; }
+.price-display { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border-d); }
+.price-installment { font-size: 12px; color: var(--text-dm); letter-spacing: 0.05em; margin-bottom: 4px; }
+.price-value { font-family: 'Fraunces', serif; font-size: 52px; font-weight: 900; line-height: 1; color: var(--text-d); display: flex; align-items: flex-start; gap: 4px; }
+.price-value sup { font-size: 20px; margin-top: 10px; font-weight: 300; }
+.price-total { font-size: 12px; color: var(--text-dm); margin-top: 6px; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+.pricing-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--text-dm); line-height: 1.5; font-weight: 300; }
+.pricing-features li::before { content: '→'; flex-shrink: 0; font-family: 'Fraunces', serif; margin-top: 1px; }
+.p1 .pricing-features li::before { color: var(--steel-light); }
+.p2 .pricing-features li::before { color: var(--steel); }
+.p3 .pricing-features li::before { color: var(--silver); }
+.pricing-cta { display: block; width: 100%; padding: 16px; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border-radius: 4px; cursor: none; transition: all .3s; }
+.p1 .pricing-cta { background: rgba(79,168,216,0.1); border: 1px solid var(--steel-light); color: var(--steel-light); }
+.p2 .pricing-cta { background: var(--steel); color: #fff; border: 1px solid var(--steel); }
+.p3 .pricing-cta { background: rgba(122,158,186,0.1); border: 1px solid var(--silver); color: var(--silver); }
+.p1 .pricing-cta:hover { background: rgba(79,168,216,0.2); }
+.p2 .pricing-cta:hover { background: var(--steel-light); }
+.p3 .pricing-cta:hover { background: rgba(122,158,186,0.2); }
+.budget-note { background: var(--bg-d2); border: 1px solid var(--border-d); border-left: 3px solid var(--steel-light); padding: 28px 32px; margin-top: 24px; display: flex; align-items: flex-start; gap: 20px; }
+.budget-note-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.budget-note-text { font-size: 13px; color: var(--text-dm); line-height: 1.8; font-weight: 300; }
+.budget-note-text strong { color: var(--text-d); font-weight: 500; }
+
+/* ASSINATURA */
+#assinatura { max-width: 1200px; margin: 0 auto; padding: 120px 24px 160px; }
+.assinatura-inner { text-align: center; position: relative; }
+.assinatura-ring { width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(79,168,216,0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 60px; position: relative; }
+.assinatura-ring::before { content: ''; position: absolute; inset: 12px; border-radius: 50%; border: 1px solid rgba(79,168,216,0.08); }
+.assinatura-ring-inner { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--steel), var(--steel-dark)); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+.assinatura-title { font-family: 'Fraunces', serif; font-size: clamp(36px,5vw,64px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+.assinatura-sub { font-size: 16px; color: var(--text-dm); max-width: 480px; margin: 0 auto 48px; line-height: 1.7; font-weight: 300; }
+.assinatura-validade { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dm); margin-top: 40px; }
+.assinatura-validade strong { color: var(--steel-light); }
+.assinatura-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border-d); margin-top: 80px; text-align: left; }
+.party-block { background: var(--bg-d2); padding: 40px 40px 48px; }
+.party-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dm); margin-bottom: 40px; }
+.party-line { width: 100%; height: 1px; background: rgba(220,232,242,0.12); margin-bottom: 16px; }
+.party-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.party-role { font-size: 12px; color: var(--text-dm); letter-spacing: 0.05em; }
+
+footer { border-top: 1px solid var(--border-d); padding: 32px 24px; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.footer-brand { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; }
+.footer-brand span { color: var(--steel-light); }
+.footer-info { font-size: 11px; color: var(--text-dm); letter-spacing: 0.08em; text-align: right; }
+
+/* STICKY BAR */
+.sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: rgba(6,10,16,0.97); border-top: 1px solid rgba(79,168,216,0.3); padding: 12px 16px; backdrop-filter: blur(12px); gap: 10px; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.sticky-bar.visible { transform: translateY(0); }
+.sticky-bar-primary { flex: 1; background: var(--steel); color: #fff; border: none; padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 4px; text-align: center; cursor: pointer; }
+.sticky-bar-secondary { background: transparent; color: var(--text-dm); border: 1px solid rgba(220,232,242,0.15); padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400; text-decoration: none; border-radius: 4px; text-align: center; white-space: nowrap; cursor: pointer; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .grid-2col { grid-template-columns: 1fr !important; gap: 0 !important; }
+  .levels-intro, .etapas-header, .estrategia-header { grid-template-columns: 1fr; gap: 40px; }
+  .levels-grid, .pricing-grid, .funil { grid-template-columns: 1fr; }
+  .pilares-grid { grid-template-columns: 1fr 1fr; }
+  .diag-mosaic { grid-template-columns: 1fr 1fr; }
+  .diag-narrative { grid-template-columns: 1fr; gap: 40px; padding: 40px 28px; }
+  .assinatura-parties { grid-template-columns: 1fr; }
+  .timeline-prazo { display: none; }
+  .mid-cta-inner { flex-direction: column; align-items: flex-start; gap: 32px; }
+  .mid-cta-actions { width: 100%; }
+  .mid-cta-actions .btn-primary, .mid-cta-actions .btn-ghost { flex: 1; text-align: center; }
+  footer { padding-bottom: 80px; }
+  .sticky-bar { display: flex; }
+}
+@media (max-width: 600px) {
+  .cursor, .cursor-ring { display: none; }
+  body { cursor: auto; }
+  a, button { cursor: pointer; }
+  .pilares-grid { grid-template-columns: 1fr; }
+  .diag-mosaic { grid-template-columns: 1fr; }
+  #diagnostico, #metodologia, #pilares, #investimento, #assinatura { padding: 64px 16px; }
+  #estrategia, #entregaveis, #etapas { padding: 64px 16px; }
+  .estrategia-inner, .entregaveis-inner, .etapas-inner { padding: 0; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+  .tabs { overflow-x: auto; width: 100%; }
+  .tab { white-space: nowrap; }
+  .nav-cta { display: none; }
+  .assinatura-inner > div { flex-direction: column !important; align-items: center !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://wa.me/5592981070707" target="_blank" class="sticky-bar-primary">🚀 Quero começar</a>
+  <a href="https://wa.me/5592981070707" target="_blank" class="sticky-bar-secondary">💬 Falar com Luiz</a>
+</div>
+
+<nav>
+  <div class="nav-logo">paleta <span>mkt</span></div>
+  <ul class="nav-links">
+    <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="#estrategia">Estratégia</a></li>
+    <li><a href="#metodologia">Metodologia</a></li>
+    <li><a href="#investimento">Investimento</a></li>
+  </ul>
+  <a href="https://wa.me/5592981070707" target="_blank" class="nav-cta">Falar com Luiz →</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-badge">Proposta Exclusiva · Solution Vidros</div>
+  <div class="hero-number">PROPOSTA DE PRESTAÇÃO DE SERVIÇO Nº 082.2025</div>
+  <h1 class="hero-title">
+    Da produção<br>
+    <span class="a-steel">para</span> <span class="a-silver">a decisão.</span>
+  </h1>
+  <p class="hero-sub">Uma estratégia de conteúdo que transforma a expertise da Solution Vidros em filtro de leads, posicionamento digital e demanda qualificada.</p>
+  <div class="hero-cta">
+    <a href="#diagnostico" class="btn-primary">Ver o diagnóstico</a>
+    <a href="#estrategia" class="btn-ghost">A estratégia</a>
+  </div>
+  <div class="hero-scroll"><span>Role para ver</span><div class="scroll-line"></div></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── DIAGNÓSTICO · dark ── -->
+<div class="s-dark">
+<div id="diagnostico">
+  <div class="diag-header">
+    <div class="section-label reveal">O que identificamos</div>
+    <h2 class="section-title reveal reveal-delay-1">Demanda existe.<br>Filtro, não.</h2>
+    <p class="section-desc reveal reveal-delay-2">Quando roda tráfego pago, vem muita procura — mas vem curiosos junto. O Instagram é o canal onde o lead decide, mas ainda não há conteúdo que mostre o processo antes do primeiro contato.</p>
+  </div>
+
+  <div class="diag-mosaic reveal">
+    <div class="diag-block diag-accent-1">
+      <span class="diag-icon">📈</span>
+      <div class="diag-label">Diagnóstico 01</div>
+      <div class="diag-title">Alta demanda, baixa qualificação</div>
+      <p class="diag-desc">O tráfego pago já funciona — o volume de procura prova isso. O problema: <strong>curiosos e compradores chegam misturados</strong>, sem que o lead tenha se qualificado antes do contato.</p>
+    </div>
+    <div class="diag-block diag-accent-2">
+      <span class="diag-icon">📱</span>
+      <div class="diag-label">Diagnóstico 02</div>
+      <div class="diag-title">Instagram decide, mas não convence</div>
+      <p class="diag-desc">O cliente entra no Instagram e decide se o produto é pra ele ou não. Sem conteúdo de processo e fabricação, <strong>a decisão fica na dúvida</strong> — e o lead some antes de falar.</p>
+    </div>
+    <div class="diag-block diag-accent-3">
+      <span class="diag-icon">👤</span>
+      <div class="diag-label">Diagnóstico 03</div>
+      <div class="diag-title">Crescimento centralizado no CEO</div>
+      <p class="diag-desc">A Solution está crescendo — e grande. Mas a marca está <strong>concentrada no fundador</strong>. Sem conteúdo de processo, o negócio não escala digitalmente no ritmo que o crescimento exige.</p>
+    </div>
+  </div>
+
+  <div class="diag-narrative reveal" style="margin-top: 2px;">
+    <div class="diag-narrative-text">
+      <div class="section-label" style="margin-bottom: 24px;">O insight central</div>
+      <h3>Você não precisa de mais leads. Precisa de conteúdo que filtre antes do primeiro contato.</h3>
+      <p>Quando um lead chega ao seu Instagram e vê exatamente como o vidro é cortado, como o alumínio é montado, como a porta ACM é instalada — ele já tomou a decisão. Ele não é mais um curioso. Ele é um comprador.</p>
+      <p>É esse o trabalho que a Paleta Marketing vem fazer: transformar a expertise de mais de 10 anos da Solution Vidros em conteúdo estratégico que qualifica, educa e converte — antes mesmo de você precisar falar uma palavra.</p>
+    </div>
+    <div class="diag-stats">
+      <div class="diag-stat">
+        <div class="big">+10</div>
+        <div class="small">Anos de expertise no mercado vidreiro — autoridade construída offline que o digital ainda não capturou.</div>
+      </div>
+      <div class="diag-stat">
+        <div class="big">01</div>
+        <div class="small">Canal de decisão: Instagram. Quem entra lá já está considerando comprar — o conteúdo decide se ele fecha ou some.</div>
+      </div>
+      <div class="diag-stat">
+        <div class="big">0×</div>
+        <div class="small">Conteúdos de processo publicados até hoje. É aqui que mora a maior oportunidade competitiva da Solution.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── MID CTA ── -->
+<div class="mid-cta">
+  <div class="mid-cta-inner">
+    <div>
+      <span class="mid-cta-eyebrow">Proposta personalizada</span>
+      <div class="mid-cta-title">Pronto para ver<br>a estratégia completa?</div>
+    </div>
+    <div class="mid-cta-actions">
+      <a href="#estrategia" class="btn-primary">Ver a estratégia</a>
+      <a href="https://wa.me/5592981070707" target="_blank" class="btn-ghost">Falar com Luiz</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── ESTRATÉGIA · light ── -->
+<div class="s-light">
+<div id="estrategia">
+<div class="estrategia-inner">
+  <div class="estrategia-header reveal">
+    <div>
+      <div class="section-label">A solução</div>
+      <h2 class="section-title">Conteúdo que vende<br>antes de você falar.</h2>
+    </div>
+    <p class="section-desc">A metodologia PDCE da Paleta Marketing integra produção de conteúdo estratégico com distribuição em funil. Cada peça tem um papel no processo de qualificação do lead da Solution Vidros.</p>
+  </div>
+
+  <div class="funil reveal">
+    <div class="funil-stage fs-1">
+      <span class="funil-icon">🎬</span>
+      <div class="funil-stage-label">Etapa 01</div>
+      <div class="funil-name">Produção in loco</div>
+      <p class="funil-desc">Nossa equipe vai até a fábrica da Solution para capturar o processo de fabricação: corte de vidro, montagem de alumínio, instalação de portas ACM e inox. Conteúdo que só quem faz pode mostrar.</p>
+      <div class="funil-formats">
+        <span class="funil-tag">Reels de processo</span>
+        <span class="funil-tag">Bastidores</span>
+        <span class="funil-tag">Before / After</span>
+      </div>
+    </div>
+    <div class="funil-stage fs-2">
+      <span class="funil-icon">📡</span>
+      <div class="funil-stage-label">Etapa 02</div>
+      <div class="funil-name">Distribuição estratégica</div>
+      <p class="funil-desc">O conteúdo é distribuído no Instagram com estratégia de funil: do topo ao fundo. Reels atraem, carrosséis educam, stories convertem. O tráfego pago amplifica o que já funciona organicamente.</p>
+      <div class="funil-formats">
+        <span class="funil-tag">Instagram</span>
+        <span class="funil-tag">Meta ADS</span>
+        <span class="funil-tag">Stories diários</span>
+      </div>
+    </div>
+    <div class="funil-stage fs-3">
+      <span class="funil-icon">✅</span>
+      <div class="funil-stage-label">Resultado</div>
+      <div class="funil-name">Lead qualificado</div>
+      <p class="funil-desc">Quem chega depois de ver o processo já sabe o que quer, já confia na expertise e já eliminou a concorrência. O contato não começa do zero — começa quase fechado.</p>
+      <div class="funil-formats">
+        <span class="funil-tag">Menos curiosos</span>
+        <span class="funil-tag">Mais conversão</span>
+        <span class="funil-tag">Ticket maior</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ── METODOLOGIA · dark ── -->
+<div class="s-dark">
+<div id="metodologia">
+  <div class="levels-intro reveal">
+    <div>
+      <div class="section-label">Acesso estratégico</div>
+      <h2 class="section-title">Você escolhe<br>onde entrar.</h2>
+    </div>
+    <p class="section-desc">Os níveis são cumulativos e construídos sobre o mesmo diagnóstico. Cada camada amplifica o resultado da anterior — do conteúdo à conversão e, depois, à fidelização.</p>
+  </div>
+  <div class="levels-grid">
+    <div class="level-card l1 reveal">
+      <div class="level-number">1</div>
+      <div class="level-tag">Nível 1</div>
+      <div class="level-name">Atração + Conteúdo</div>
+      <div class="level-price">12× R$3.000</div>
+      <p class="level-desc">Construir a máquina de conteúdo que qualifica leads no Instagram: produção in loco, social media estratégico e tráfego pago para amplificar o alcance da Solution.</p>
+    </div>
+    <div class="level-card l2 reveal reveal-delay-1">
+      <div class="level-number">2</div>
+      <div class="level-tag">Nível 2</div>
+      <div class="level-name">Atração + Conversão</div>
+      <div class="level-price">12× R$5.000</div>
+      <p class="level-desc">Conteúdo que atrai mais CRM, scripts de atendimento e estrutura comercial para fechar as oportunidades que o marketing gera com previsibilidade.</p>
+    </div>
+    <div class="level-card l3 reveal reveal-delay-2">
+      <div class="level-number">3</div>
+      <div class="level-tag">Nível 3</div>
+      <div class="level-name">Full Growth</div>
+      <div class="level-price">12× R$7.000</div>
+      <p class="level-desc">Operação completa: conteúdo, conversão e retenção. Automações de relacionamento, fidelização e recuperação de clientes — a Solution cresce com previsibilidade em todas as frentes.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── ENTREGÁVEIS · light ── -->
+<div class="s-light">
+<div id="entregaveis">
+<div class="entregaveis-inner">
+  <div style="margin-bottom: 60px;">
+    <div class="section-label reveal">Entregáveis</div>
+    <h2 class="section-title reveal reveal-delay-1">O que está incluído<br>em cada nível.</h2>
+  </div>
+  <div class="tabs reveal reveal-delay-2">
+    <button class="tab active" onclick="switchTab(event,'tab1')">Nível 1 · Atração</button>
+    <button class="tab" onclick="switchTab(event,'tab2')">Nível 2 · Conversão</button>
+    <button class="tab" onclick="switchTab(event,'tab3')">Nível 3 · Full Growth</button>
+  </div>
+  <div id="tab1" class="tab-content active">
+    <div class="deliverables-grid">
+      <div class="deliverable-item"><div class="del-icon l1-icon">📊</div><div class="del-text">Análise de Mercado e Posicionamento Digital Multi-plataformas</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">🧭</div><div class="del-text">Consultoria e Elaboração de Estratégia Comercial</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">⚡</div><div class="del-text">Gestão e Execução de Tráfego Pago Estratégico (Meta ADS)</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">🔁</div><div class="del-text">Planejamento de Funis de Conteúdo Estratégico (B2C e B2B)</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">🗺️</div><div class="del-text">Mapeamento e Orientação Estratégica de Canais de Aquisição</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">🎬</div><div class="del-text">02 Produções mensais in loco — processo de fabricação e instalação</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">📱</div><div class="del-text">Social Media Estratégico — 10 conteúdos mensais + 03 stories diários [90 stories/mês]</div></div>
+      <div class="deliverable-item"><div class="del-icon l1-icon">🎁</div><div class="del-text del-bonus">Bônus: Criação de 01 Landing Page</div></div>
+    </div>
+  </div>
+  <div id="tab2" class="tab-content">
+    <div class="deliverables-grid">
+      <div class="deliverable-item"><div class="del-icon l2-icon">📈</div><div class="del-text del-bonus">Tudo do Nível 1 incluso</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">🔍</div><div class="del-text">Análise e Acompanhamento dos Canais de Venda</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">🛠️</div><div class="del-text">Consultoria e Implementação do CRM de Vendas (Kommo)</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">📋</div><div class="del-text">Elaboração do Playbook e Scripts de Atendimento</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">👥</div><div class="del-text">Consultoria e Treinamento de Time Comercial</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">📊</div><div class="del-text">Gestão e Acompanhamento de Indicadores de Performance</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">📱</div><div class="del-text">Social Media Estratégico — 12 conteúdos mensais + 05 stories diários [150 stories/mês]</div></div>
+      <div class="deliverable-item"><div class="del-icon l2-icon">🤖</div><div class="del-text del-bonus">Bônus: Automação de contato de relacionamento</div></div>
+    </div>
+  </div>
+  <div id="tab3" class="tab-content">
+    <div class="deliverables-grid">
+      <div class="deliverable-item"><div class="del-icon l3-icon">🏆</div><div class="del-text del-bonus">Tudo do Nível 2 incluso</div></div>
+      <div class="deliverable-item"><div class="del-icon l3-icon">🤖</div><div class="del-text">Automação avançada de Contatos de Relacionamento</div></div>
+      <div class="deliverable-item"><div class="del-icon l3-icon">💬</div><div class="del-text">Implementação de E-mail e WhatsApp Marketing</div></div>
+      <div class="deliverable-item"><div class="del-icon l3-icon">🎯</div><div class="del-text">Implementação de Estratégias de Fidelização de Clientes</div></div>
+      <div class="deliverable-item"><div class="del-icon l3-icon">🔄</div><div class="del-text">Implementação de Estratégias de Recuperação de Oportunidades</div></div>
+      <div class="deliverable-item"><div class="del-icon l3-icon">📉</div><div class="del-text">Análise, Gestão e Otimização contínua de Performance</div></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ── PILARES · dark ── -->
+<div class="s-dark">
+<div id="pilares">
+  <div class="pilares-header">
+    <div class="section-label reveal">Por que Paleta Mkt</div>
+    <h2 class="section-title reveal reveal-delay-1">Assessoria de valor.<br>Não de posts.</h2>
+    <p class="section-desc reveal reveal-delay-2">Somos empresa local. Vamos até a fábrica. Entendemos o produto. E entregamos além dos resultados operacionais — apoio tático e estratégico ao seu negócio.</p>
+  </div>
+  <div class="pilares-grid">
+    <div class="pilar-card reveal">
+      <span class="pilar-arrow">→</span>
+      <div class="pilar-num">01</div>
+      <span class="pilar-icon">📍</span>
+      <div class="pilar-title">Empresa local · In loco</div>
+      <p class="pilar-desc">Somos de Manaus. Vamos até a fábrica da Solution gravar o processo real — algo que nenhuma agência remota consegue entregar com a mesma autenticidade e frequência.</p>
+    </div>
+    <div class="pilar-card reveal reveal-delay-1">
+      <span class="pilar-arrow">→</span>
+      <div class="pilar-num">02</div>
+      <span class="pilar-icon">⚡</span>
+      <div class="pilar-title">Start em até 7 dias</div>
+      <p class="pilar-desc">Campanhas rodando em até uma semana após a assinatura. Sem esperar meses para ver os primeiros resultados no Instagram.</p>
+    </div>
+    <div class="pilar-card reveal reveal-delay-2">
+      <span class="pilar-arrow">→</span>
+      <div class="pilar-num">03</div>
+      <span class="pilar-icon">🎯</span>
+      <div class="pilar-title">Metodologia PDCE</div>
+      <p class="pilar-desc">Produção de Conteúdo Estratégico e Distribuição integradas. Cada conteúdo tem função no funil — não fazemos post bonito. Fazemos conteúdo que qualifica e vende.</p>
+    </div>
+    <div class="pilar-card reveal">
+      <span class="pilar-arrow">→</span>
+      <div class="pilar-num">04</div>
+      <span class="pilar-icon">📊</span>
+      <div class="pilar-title">Checkpoint mensal</div>
+      <p class="pilar-desc">Resultados do mês, alinhamento de metas e evolução do projeto ciclo a ciclo. Você sempre sabe onde está e para onde vai.</p>
+    </div>
+    <div class="pilar-card reveal reveal-delay-1">
+      <span class="pilar-arrow">→</span>
+      <div class="pilar-num">05</div>
+      <span class="pilar-icon">📄</span>
+      <div class="pilar-title">Relatórios com plano de ação</div>
+      <p class="pilar-desc">Não entregamos só números. Entregamos o próximo passo — o que funcionou, o que ajustar e o que amplificar no próximo ciclo.</p>
+    </div>
+    <div class="pilar-card reveal reveal-delay-2">
+      <span class="pilar-arrow">→</span>
+      <div class="pilar-num">06</div>
+      <span class="pilar-icon">🔍</span>
+      <div class="pilar-title">Monitoramento ativo</div>
+      <p class="pilar-desc">Identificação de baixa performance com tomadas de ação imediatas. Não esperamos o mês acabar — agimos enquanto ainda dá tempo de reverter.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── ETAPAS · light ── -->
+<div class="s-light">
+<div id="etapas">
+<div class="etapas-inner">
+  <div class="etapas-header reveal">
+    <div>
+      <div class="section-label">Cronograma</div>
+      <h2 class="section-title">Como o projeto<br>acontece.</h2>
+    </div>
+    <p class="section-desc">Cada etapa tem prazo definido em dias úteis. Alterações estendem o prazo equivalente, com limite de 3 alterações por entrega.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div>
+        <div class="timeline-step">Etapa 01</div>
+        <div class="timeline-title">Onboarding</div>
+        <p class="timeline-desc">Estruturação de infraestrutura, contas e serviços essenciais. Organização dos perfis de Instagram e Facebook, Meta ADS, criação de públicos, pixels e acessos aos sistemas.</p>
+      </div>
+      <div class="timeline-prazo"><div class="prazo-num">7</div><div class="prazo-label">dias úteis</div></div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-dot"></div>
+      <div>
+        <div class="timeline-step">Etapa 02</div>
+        <div class="timeline-title">Gravação Inaugural</div>
+        <p class="timeline-desc">Nossa equipe vai à fábrica da Solution para a primeira produção in loco. Captação de processo de fabricação, equipe, instalações e produtos — o conteúdo âncora de toda a estratégia.</p>
+      </div>
+      <div class="timeline-prazo"><div class="prazo-num">15</div><div class="prazo-label">dias do início</div></div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-dot"></div>
+      <div>
+        <div class="timeline-step">Etapa 03</div>
+        <div class="timeline-title">Campanhas</div>
+        <p class="timeline-desc">Planejamento, elaboração das estratégias e desenvolvimento das campanhas de acordo com os objetivos e nível de acesso estratégico do projeto.</p>
+      </div>
+      <div class="timeline-prazo"><div class="prazo-num">3</div><div class="prazo-label">dias úteis</div></div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-3">
+      <div class="timeline-dot"></div>
+      <div>
+        <div class="timeline-step">Etapa 04 · Contínuo</div>
+        <div class="timeline-title">Gestão Semanal</div>
+        <p class="timeline-desc">Acompanhamento premium com otimização de recursos, orçamento, medição de resultados e suporte especializado toda semana via WhatsApp.</p>
+      </div>
+      <div class="timeline-prazo"><div class="prazo-num">1×</div><div class="prazo-label">por semana</div></div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-4">
+      <div class="timeline-dot"></div>
+      <div>
+        <div class="timeline-step">Etapa 05 · Contínuo</div>
+        <div class="timeline-title">Checkpoint Mensal</div>
+        <p class="timeline-desc">Relatório de resultados, alinhamento de metas, oportunidades de mercado e planejamento do próximo ciclo para evoluir o projeto mês a mês.</p>
+      </div>
+      <div class="timeline-prazo"><div class="prazo-num">1×</div><div class="prazo-label">por mês</div></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ── INVESTIMENTO · dark ── -->
+<div class="s-dark">
+<div id="investimento">
+  <div class="inv-header">
+    <div class="section-label reveal">Investimento</div>
+    <h2 class="section-title reveal reveal-delay-1">Escolha o nível<br>de acesso estratégico.</h2>
+    <p class="section-desc reveal reveal-delay-2" style="margin: 0 auto; text-align: center;">Cada nível representa um ciclo de 12 meses. O projeto é construído para crescer com você — você começa onde faz sentido e evolui conforme o resultado.</p>
+  </div>
+  <div class="reveal-gate">
+    <p>A proposta de investimento é apresentada de forma personalizada. Clique para visualizar os valores.</p>
+    <button class="btn-reveal" id="revealBtn" onclick="revealPricing()">
+      <span class="lock-icon">🔒</span>
+      Ver investimento
+    </button>
+  </div>
+  <div class="pricing-wrapper" id="pricingWrapper">
+    <div class="pricing-grid">
+      <div class="pricing-card p1">
+        <div class="pricing-tier">Nível 1</div>
+        <div class="pricing-name">Atração + Conteúdo</div>
+        <p class="pricing-objective">Construir a máquina de conteúdo que filtra leads e posiciona a Solution Vidros como referência no Instagram de Manaus.</p>
+        <div class="price-display">
+          <div class="price-installment">12 parcelas de</div>
+          <div class="price-value"><sup>R$</sup>3.000</div>
+          <div class="price-total">Total: R$36.000 · Validade: 3 dias corridos</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Análise de mercado e posicionamento digital</li>
+          <li>02 produções in loco mensais</li>
+          <li>10 conteúdos + 90 stories/mês</li>
+          <li>Tráfego pago estratégico (Meta ADS)</li>
+          <li>Consultoria e estratégia comercial</li>
+          <li>Bônus: 01 Landing Page</li>
+        </ul>
+        <a href="https://wa.me/5592981070707" target="_blank" class="pricing-cta">Escolher Nível 1</a>
+      </div>
+      <div class="pricing-card p2 featured">
+        <div class="pricing-tier">Nível 2</div>
+        <div class="pricing-name">Atração + Conversão</div>
+        <p class="pricing-objective">Conteúdo que atrai mais CRM e estrutura comercial para fechar as oportunidades com previsibilidade e escala.</p>
+        <div class="price-display">
+          <div class="price-installment">12 parcelas de</div>
+          <div class="price-value"><sup>R$</sup>5.000</div>
+          <div class="price-total">Total: R$60.000 · Validade: 3 dias corridos</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Tudo do Nível 1 incluso</li>
+          <li>CRM de vendas (Kommo)</li>
+          <li>Playbook e scripts de atendimento</li>
+          <li>Treinamento de time comercial</li>
+          <li>12 conteúdos + 150 stories/mês</li>
+          <li>Bônus: Automação de relacionamento</li>
+        </ul>
+        <a href="https://wa.me/5592981070707" target="_blank" class="pricing-cta">Escolher Nível 2</a>
+      </div>
+      <div class="pricing-card p3">
+        <div class="pricing-tier">Nível 3</div>
+        <div class="pricing-name">Full Growth</div>
+        <p class="pricing-objective">Operação completa de marketing: conteúdo, conversão e retenção integrados com automação e análise de performance.</p>
+        <div class="price-display">
+          <div class="price-installment">12 parcelas de</div>
+          <div class="price-value"><sup>R$</sup>7.000</div>
+          <div class="price-total">Total: R$84.000 · Validade: 3 dias corridos</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Tudo do Nível 2 incluso</li>
+          <li>Automação avançada de relacionamento</li>
+          <li>E-mail e WhatsApp Marketing</li>
+          <li>Estratégias de fidelização e recuperação</li>
+          <li>Análise e otimização contínua de performance</li>
+        </ul>
+        <a href="https://wa.me/5592981070707" target="_blank" class="pricing-cta">Escolher Nível 3</a>
+      </div>
+    </div>
+    <div class="budget-note">
+      <div class="budget-note-icon">📌</div>
+      <div class="budget-note-text">
+        <strong>Budget de campanhas (Meta ADS):</strong> O investimento em tráfego pago é separado da mensalidade e fica 100% na conta do cliente. Recomendamos o mínimo de R$500/mês para resultados consistentes. Até R$5.000/mês de orçamento sem custo adicional de gestão — acima desse valor, 10% sobre o excedente no mês subsequente.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── ASSINATURA · dark ── -->
+<div class="s-dark">
+<div id="assinatura">
+  <div class="assinatura-inner">
+    <div class="assinatura-ring">
+      <div class="assinatura-ring-inner">🪟</div>
+    </div>
+    <h2 class="assinatura-title reveal">Pronto para começar?</h2>
+    <p class="assinatura-sub reveal reveal-delay-1">A Solution Vidros tem mais de 10 anos de expertise e uma oportunidade clara no digital. O próximo passo é um encontro para alinhar expectativas e assinar.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" class="reveal reveal-delay-2">
+      <a href="https://wa.me/5592981070707" target="_blank" class="btn-primary">Falar com Luiz agora</a>
+      <a href="#investimento" class="btn-ghost">Rever o investimento</a>
+    </div>
+    <div class="assinatura-validade reveal reveal-delay-3">Proposta válida por <strong>3 dias corridos</strong> a partir do recebimento.</div>
+    <div class="assinatura-parties reveal reveal-delay-4">
+      <div class="party-block">
+        <div class="party-label">Contratante</div>
+        <div class="party-line"></div>
+        <div class="party-name">Fabrizio Costa</div>
+        <div class="party-role">Solution Vidros · CEO e Fundador</div>
+      </div>
+      <div class="party-block">
+        <div class="party-label">Paleta Marketing · Assessoria</div>
+        <div class="party-line"></div>
+        <div class="party-name">Luiz Antônio</div>
+        <div class="party-role">Paleta Mkt · Diretor de Marketing</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <div class="footer-brand">paleta <span>mkt</span></div>
+  <div class="footer-info">Proposta Nº 082.2025 · Solution Vidros<br>Manaus, AM · paletamkt.com.br</div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  cursorRing.style.left = e.clientX + 'px';
+  cursorRing.style.top = e.clientY + 'px';
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+function switchTab(e, tabId) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+function revealPricing() {
+  const btn = document.getElementById('revealBtn');
+  const wrapper = document.getElementById('pricingWrapper');
+  btn.classList.add('unlocked');
+  btn.innerHTML = '<span class="lock-icon">🔓</span> Valores revelados';
+  wrapper.classList.add('visible');
+  setTimeout(() => { wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+}
+
+const stickyBar = document.getElementById('stickyBar');
+window.addEventListener('scroll', () => {
+  stickyBar.classList.toggle('visible', window.scrollY > 600);
+});
+</script>
+</body>
+</html>
